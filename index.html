@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>শিক্ষার আলো — Bangladeshi Student Hub</title>
+<title>প্রাতিষ্ঠানিক শিক্ষা — Bangladeshi Student Center</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -290,6 +290,13 @@
     border-radius: var(--radius);
     padding: 32px;
     max-width: 700px;
+  }
+
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
   }
 
   .subject-row {
@@ -615,6 +622,40 @@
     .footer-top { grid-template-columns: 1fr 1fr; }
     .subject-row { grid-template-columns: 1fr 90px 90px 30px; }
     .form-row { grid-template-columns: 1fr; }
+    .calc-layout { grid-template-columns: 1fr; }
+    .calc-layout > div:last-child { order: -1; }
+
+    .nav-links {
+      position: absolute;
+      top: 62px;
+      left: 0;
+      right: 0;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 0;
+      display: none;
+      z-index: 99;
+    }
+
+    .nav-links a {
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+      border-bottom: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .nav-open .nav-links {
+      display: flex;
+    }
+
+    .nav-open .nav-badge {
+      display: inline-flex;
+      width: calc(100% - 32px);
+      margin: 10px 16px 14px;
+      justify-content: center;
+    }
   }
 
   /* Animations */
@@ -641,7 +682,7 @@
   <a href="#" class="nav-brand">
     <div class="nav-flag"></div>
     <div>
-      <span class="brand-text">শিক্ষার আলো</span>
+      <span class="brand-text">প্রাতিষ্ঠানিক শিক্ষা</span>
       <span class="brand-sub">Bangladesh Student Portal</span>
     </div>
   </a>
@@ -817,7 +858,7 @@
     <div class="section-label">Academic Tools</div>
     <h2 class="section-title">GPA / CGPA Calculator</h2>
     <p class="section-sub">Based on Bangladesh Education Board grading — SSC, HSC & University</p>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+    <div class="calc-layout">
       <div>
         <div class="calc-box">
           <div style="display: grid; grid-template-columns: 1fr 120px 120px 40px; gap: 10px; margin-bottom: 8px;">
@@ -1309,7 +1350,7 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <span class="footer-brand">🇧🇩 শিক্ষার আলো</span>
+        <span class="footer-brand">🇧🇩 প্রাতিষ্ঠানিক শিক্ষা</span>
         <p class="footer-tagline">A free, open resource portal dedicated to every student in Bangladesh — from Class 1 to PhD. Built with love for the land of rivers and resilience.</p>
       </div>
       <div class="footer-col">
@@ -1566,6 +1607,17 @@ document.querySelectorAll('.exam-card, .tool-btn, .schol-card, .resource-card, .
   el.classList.add('hidden');
   observer.observe(el);
 });
+
+const menuButton = document.querySelector('.hamburger');
+const mainNav = document.querySelector('nav');
+if (menuButton && mainNav) {
+  menuButton.addEventListener('click', () => {
+    mainNav.classList.toggle('nav-open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => mainNav.classList.remove('nav-open'));
+  });
+}
 </script>
 </body>
 </html>
