@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>শিক্ষার আলো — Bangladeshi Student Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #006A4E;
+    --green-light: #008a65;
+    --green-dim: #e6f4ef;
+    --red: #D32F2F;
+    --red-dim: #fdecea;
+    --gold: #E8A000;
+    --gold-dim: #fff8e1;
+    --ink: #1a1a2e;
+    --ink2: #3d3d5c;
+    --muted: #6e7491;
+    --surface: #f7f8fc;
+    --white: #ffffff;
+    --border: #e2e5f0;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 2px 16px rgba(0,106,78,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,106,78,0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', 'Hind Siliguri', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-flag {
+    width: 32px; height: 20px;
+    background: var(--green);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-flag::before {
+    content: '';
+    position: absolute;
+    width: 13px; height: 13px;
+    background: var(--red);
+    border-radius: 50%;
+    top: 50%; left: 45%;
+    transform: translate(-50%, -50%);
+  }
+
+  .brand-text { font-size: 1.1rem; font-weight: 700; color: var(--green); letter-spacing: -0.3px; }
+  .brand-sub { font-size: 0.7rem; color: var(--muted); font-weight: 400; display: block; margin-top: -3px; }
+
+  .nav-links { display: flex; gap: 6px; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink2);
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { background: var(--green-dim); color: var(--green); }
+
+  .nav-badge {
+    background: var(--red);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .nav-badge:hover { background: var(--red); opacity: 0.85; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #006A4E 0%, #004d38 60%, #1a1a2e 100%);
+    color: white;
+    padding: 80px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 .accent { color: #7FFFD4; }
+  .hero h1 .bangla-big { font-family: 'Hind Siliguri', sans-serif; display: block; font-size: 1.2em; }
+
+  .hero p { font-size: 1.05rem; opacity: 0.85; margin-bottom: 28px; line-height: 1.7; }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: white; color: var(--green);
+    border: none; padding: 12px 24px;
+    border-radius: 25px; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+  .btn-ghost {
+    background: transparent; color: white;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    padding: 12px 24px; border-radius: 25px;
+    font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  .stat-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+  }
+  .stat-card .num { font-size: 1.8rem; font-weight: 700; color: #7FFFD4; display: block; }
+  .stat-card .label { font-size: 0.8rem; opacity: 0.8; margin-top: 2px; }
+
+  /* ── TICKER ── */
+  .ticker-bar {
+    background: var(--ink);
+    color: white;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-bar::before {
+    content: '🔴 LIVE';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--red);
+    padding: 0 16px;
+    display: flex; align-items: center;
+    font-size: 0.75rem; font-weight: 700;
+    z-index: 2; white-space: nowrap;
+  }
+  .ticker-inner { display: flex; animation: ticker 40s linear infinite; width: max-content; padding-left: 100px; }
+  .ticker-inner span { white-space: nowrap; font-size: 0.83rem; padding: 0 40px; opacity: 0.9; }
+  .ticker-inner span.dot::before { content: '•'; margin-right: 40px; opacity: 0.4; }
+
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 64px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--green); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block; width: 20px; height: 2px;
+    background: var(--green); border-radius: 2px;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700; letter-spacing: -0.3px;
+    color: var(--ink); margin-bottom: 8px;
+  }
+
+  .section-sub { color: var(--muted); font-size: 1rem; margin-bottom: 40px; }
+
+  /* ── EXAM BOARDS ── */
+  .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
+  .exam-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .exam-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--green));
+  }
+  .exam-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: transparent; }
+
+  .exam-card .icon {
+    width: 48px; height: 48px;
+    border-radius: var(--radius-sm);
+    background: var(--card-bg, var(--green-dim));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+  }
+  .exam-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .exam-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+  .exam-card .tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 20px;
+    background: var(--card-bg, var(--green-dim));
+    color: var(--card-accent, var(--green));
+  }
+
+  /* ── QUICK TOOLS ── */
+  .tools-bg { background: var(--surface); }
+
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+
+  .tool-btn {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+  }
+  .tool-btn:hover { border-color: var(--green); box-shadow: var(--shadow); transform: translateY(-2px); }
+  .tool-btn .t-icon { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+  .tool-btn .t-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); display: block; }
+  .tool-btn .t-desc { font-size: 0.75rem; color: var(--muted); display: block; margin-top: 4px; }
+
+  /* ── GPA CALC ── */
+  .calc-section { background: white; }
+  .calc-box {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    max-width: 700px;
+  }
+
+  .subject-row {
+    display: grid; grid-template-columns: 1fr 120px 120px 40px;
+    gap: 10px; margin-bottom: 10px; align-items: center;
+  }
+  .subject-row input, .subject-row select {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 9px 12px;
+    font-size: 0.88rem; font-family: inherit;
+    color: var(--ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .subject-row input:focus, .subject-row select:focus { border-color: var(--green); }
+
+  .calc-result {
+    margin-top: 20px;
+    background: var(--green);
+    color: white;
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .calc-result .gpa-num { font-size: 2.4rem; font-weight: 700; letter-spacing: -1px; }
+  .calc-result .gpa-grade { font-size: 1rem; opacity: 0.85; }
+  .calc-result .gpa-label { font-size: 0.82rem; opacity: 0.7; display: block; }
+
+  .btn-add-subject {
+    background: var(--green-dim); color: var(--green);
+    border: 1.5px dashed var(--green);
+    padding: 9px 20px; border-radius: var(--radius-sm);
+    font-size: 0.85rem; font-weight: 600;
+    cursor: pointer; margin-top: 6px;
+    transition: all 0.2s;
+  }
+  .btn-add-subject:hover { background: var(--green); color: white; border-style: solid; }
+
+  .remove-btn {
+    background: none; border: none;
+    color: var(--muted); font-size: 1.2rem;
+    cursor: pointer; padding: 0; line-height: 1;
+    transition: color 0.2s;
+  }
+  .remove-btn:hover { color: var(--red); }
+
+  /* ── SCHOLARSHIPS ── */
+  .schol-bg { background: var(--ink); }
+  .schol-title { color: white; }
+  .schol-sub { color: rgba(255,255,255,0.55); }
+  .schol-label { color: #7FFFD4; }
+  .schol-label::before { background: #7FFFD4; }
+
+  .schol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+
+  .schol-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: all 0.25s;
+  }
+  .schol-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+  .schol-card .s-country {
+    font-size: 0.75rem; font-weight: 600; color: #7FFFD4;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .schol-card h4 { font-size: 1rem; font-weight: 600; color: white; margin-bottom: 6px; }
+  .schol-card p { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .schol-card .s-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .s-tag {
+    font-size: 0.72rem; padding: 3px 10px; border-radius: 12px;
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
+  }
+  .s-tag.green { background: rgba(127,255,212,0.12); color: #7FFFD4; }
+
+  /* ── RESOURCES ── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .resource-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: flex; flex-direction: column;
+  }
+  .resource-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: transparent; }
+
+  .resource-card .r-thumb {
+    height: 6px;
+    background: var(--thumb-color, var(--green));
+  }
+  .resource-card .r-body { padding: 20px; flex: 1; }
+  .resource-card .r-cat {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--thumb-color, var(--green));
+    margin-bottom: 6px;
+  }
+  .resource-card h4 { font-size: 0.97rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+  .resource-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+  .resource-card .r-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface);
+  }
+  .resource-card .r-source { font-size: 0.75rem; color: var(--muted); }
+  .resource-card .r-arrow {
+    font-size: 0.8rem; color: var(--thumb-color, var(--green));
+    font-weight: 600;
+  }
+
+  /* ── ROUTINE MAKER ── */
+  .routine-bg { background: var(--green-dim); }
+
+  .routine-table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1.5px solid var(--border); background: white; }
+  .routine-table {
+    width: 100%; border-collapse: collapse; min-width: 700px;
+    font-size: 0.83rem;
+  }
+  .routine-table th {
+    background: var(--green); color: white;
+    padding: 12px 14px; text-align: center;
+    font-weight: 600; font-size: 0.8rem;
+  }
+  .routine-table td {
+    border: 1px solid var(--border);
+    padding: 0;
+  }
+  .routine-table td input {
+    width: 100%; border: none; padding: 10px 10px;
+    font-size: 0.82rem; font-family: inherit;
+    background: transparent; outline: none; color: var(--ink);
+    text-align: center;
+  }
+  .routine-table td input:focus { background: rgba(0,106,78,0.05); }
+  .routine-table .time-col {
+    background: var(--surface); font-weight: 600;
+    text-align: center; padding: 10px;
+    color: var(--ink2); font-size: 0.8rem;
+  }
+
+  .routine-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+
+  .btn-green {
+    background: var(--green); color: white;
+    border: none; padding: 10px 22px;
+    border-radius: 25px; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-green:hover { background: var(--green-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent; color: var(--green);
+    border: 1.5px solid var(--green);
+    padding: 10px 22px; border-radius: 25px;
+    font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--green-dim); }
+
+  /* ── UNIVERSITY FINDER ── */
+  .uni-search-bar {
+    display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .uni-search-bar input, .uni-search-bar select {
+    border: 1.5px solid var(--border);
+    border-radius: 25px; padding: 10px 18px;
+    font-size: 0.88rem; font-family: inherit;
+    outline: none; background: white;
+    flex: 1; min-width: 180px;
+    transition: border-color 0.2s;
+  }
+  .uni-search-bar input:focus, .uni-search-bar select:focus { border-color: var(--green); }
+  .btn-search {
+    background: var(--green); color: white; border: none;
+    padding: 10px 24px; border-radius: 25px;
+    font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-search:hover { background: var(--green-light); }
+
+  .uni-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+
+  .uni-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    background: white;
+    transition: all 0.2s;
+  }
+  .uni-card:hover { border-color: var(--green); box-shadow: var(--shadow); }
+  .uni-card .u-badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 12px; margin-bottom: 10px;
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .u-public { background: var(--green-dim); color: var(--green); }
+  .u-private { background: var(--gold-dim); color: var(--gold); }
+  .u-medical { background: var(--red-dim); color: var(--red); }
+  .u-eng { background: #e8f0fe; color: #3367d6; }
+  .uni-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .uni-card .u-loc { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+  .uni-card .u-info { display: flex; gap: 16px; font-size: 0.78rem; color: var(--muted); }
+  .uni-card .u-info span strong { color: var(--ink2); }
+
+  /* ── MOTIVATIONAL BOARD ── */
+  .quote-board {
+    background: var(--ink);
+    border-radius: var(--radius);
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+  .quote-board::before {
+    content: '"';
+    font-size: 12rem; font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    position: absolute; top: -30px; left: 20px;
+    line-height: 1; font-family: Georgia, serif;
+  }
+  .quote-text { font-size: 1.3rem; color: white; font-weight: 500; line-height: 1.6; margin-bottom: 12px; position: relative; }
+  .quote-bangla { font-family: 'Hind Siliguri', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+  .quote-author { font-size: 0.85rem; color: #7FFFD4; font-weight: 600; }
+
+  /* ── PROGRESS TRACKER ── */
+  .progress-bg { background: var(--surface); }
+  .progress-form {
+    background: white; border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--ink2); display: block; margin-bottom: 5px; }
+  .form-group input, .form-group select {
+    width: 100%; border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); padding: 9px 12px;
+    font-size: 0.88rem; font-family: inherit; outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--green); }
+
+  .progress-bar-wrap { background: var(--border); border-radius: 8px; height: 10px; overflow: hidden; margin-top: 4px; }
+  .progress-bar { height: 100%; background: linear-gradient(90deg, var(--green), var(--green-light)); border-radius: 8px; transition: width 0.5s ease; }
+
+  .subject-progress { margin-bottom: 14px; }
+  .sp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+  .sp-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); }
+  .sp-pct { font-size: 0.82rem; color: var(--green); font-weight: 600; }
+
+  /* ── CAREER ── */
+  .career-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+
+  .career-card {
+    background: white; border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .career-card:hover { border-color: var(--green); box-shadow: var(--shadow); transform: translateY(-2px); }
+  .career-card .c-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+  .career-card h4 { font-size: 0.97rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .career-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+  .career-card .c-salary { font-size: 0.78rem; color: var(--green); font-weight: 600; }
+  .career-card .c-demand {
+    font-size: 0.7rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 12px; float: right;
+  }
+  .demand-high { background: var(--green-dim); color: var(--green); }
+  .demand-med { background: var(--gold-dim); color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.6);
+    padding: 48px 5% 24px;
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; display: block; }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.7; }
+  .footer-col h5 { color: white; font-size: 0.88rem; font-weight: 600; margin-bottom: 14px; }
+  .footer-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: #7FFFD4; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px; display: flex;
+    justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px;
+    font-size: 0.78rem;
+  }
+  .made-in-bd { display: flex; align-items: center; gap: 6px; }
+  .flag-mini {
+    display: inline-block; width: 18px; height: 12px;
+    background: var(--green); border-radius: 2px; position: relative;
+  }
+  .flag-mini::before {
+    content: ''; position: absolute;
+    width: 7px; height: 7px; background: var(--red);
+    border-radius: 50%; top: 50%; left: 44%; transform: translate(-50%,-50%);
+  }
+
+  /* ── MOBILE ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-badge { display: none; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stats { margin-top: 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .subject-row { grid-template-columns: 1fr 90px 90px 30px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.5s ease forwards; }
+
+  .hidden { opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+  .visible { opacity: 1; transform: translateY(0); }
+
+  /* Print routine */
+  @media print {
+    nav, .ticker-bar, .hero, footer, .routine-actions { display: none; }
+    .routine-bg { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-flag"></div>
+    <div>
+      <span class="brand-text">শিক্ষার আলো</span>
+      <span class="brand-sub">Bangladesh Student Portal</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#exams">পরীক্ষা</a>
+    <a href="#gpa">GPA Calc</a>
+    <a href="#scholarships">Scholarships</a>
+    <a href="#universities">Universities</a>
+    <a href="#career">Career</a>
+    <a href="#resources">Resources</a>
+  </div>
+  <a href="#tracker" class="nav-badge">📊 Track Progress</a>
+  <div class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🇧🇩 For Every Bangladeshi Student</div>
+      <h1>
+        <span class="bangla-big">জ্ঞানই শক্তি</span>
+        Knowledge is <span class="accent">your power</span>
+      </h1>
+      <p>Tools, resources, scholarships, GPA calculators, and career guides — everything a Bangladeshi student needs to succeed, in one place.</p>
+      <div class="hero-actions">
+        <a href="#gpa" class="btn-primary">Calculate My GPA</a>
+        <a href="#scholarships" class="btn-ghost">Find Scholarships →</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="num">50+</span>
+        <span class="label">Study resources curated</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">120+</span>
+        <span class="label">Scholarships listed</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">160+</span>
+        <span class="label">Universities in BD</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">Free</span>
+        <span class="label">Always, for all students</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar" role="marquee" aria-label="News ticker">
+  <div class="ticker-inner" id="ticker">
+    <span>📌 HSC 2025 result expected soon — check education board website</span>
+    <span class="dot">SSC result re-scrutiny deadline approaching</span>
+    <span class="dot">🇯🇵 MEXT Scholarship 2025 applications now open for Bangladeshi students</span>
+    <span class="dot">Dhaka University Admission Test registration begins</span>
+    <span class="dot">🏆 Commonwealth Scholarship applications closing soon</span>
+    <span class="dot">BUET admission circular published — check details</span>
+    <span class="dot">📌 HSC 2025 result expected soon — check education board website</span>
+    <span class="dot">SSC result re-scrutiny deadline approaching</span>
+    <span class="dot">🇯🇵 MEXT Scholarship 2025 applications now open for Bangladeshi students</span>
+    <span class="dot">Dhaka University Admission Test registration begins</span>
+    <span class="dot">🏆 Commonwealth Scholarship applications closing soon</span>
+    <span class="dot">BUET admission circular published — check details</span>
+  </div>
+</div>
+
+<!-- QUICK TOOLS -->
+<section class="section tools-bg">
+  <div class="section-inner">
+    <div class="section-label">Quick Access</div>
+    <h2 class="section-title">Tools you use every day</h2>
+    <p class="section-sub">Jump straight to what you need</p>
+    <div class="tools-grid">
+      <a href="#gpa" class="tool-btn">
+        <span class="t-icon">🎓</span>
+        <span class="t-name">GPA Calculator</span>
+        <span class="t-desc">SSC & HSC grading</span>
+      </a>
+      <a href="#routine" class="tool-btn">
+        <span class="t-icon">📅</span>
+        <span class="t-name">Routine Maker</span>
+        <span class="t-desc">Build your study schedule</span>
+      </a>
+      <a href="#tracker" class="tool-btn">
+        <span class="t-icon">📊</span>
+        <span class="t-name">Progress Tracker</span>
+        <span class="t-desc">Track chapter completion</span>
+      </a>
+      <a href="#universities" class="tool-btn">
+        <span class="t-icon">🏛️</span>
+        <span class="t-name">University Finder</span>
+        <span class="t-desc">Search by district & type</span>
+      </a>
+      <a href="#scholarships" class="tool-btn">
+        <span class="t-icon">💰</span>
+        <span class="t-name">Scholarships</span>
+        <span class="t-desc">Local & international</span>
+      </a>
+      <a href="#career" class="tool-btn">
+        <span class="t-icon">🚀</span>
+        <span class="t-name">Career Guide</span>
+        <span class="t-desc">Salaries & job demand</span>
+      </a>
+      <a href="#resources" class="tool-btn">
+        <span class="t-icon">📚</span>
+        <span class="t-name">Free Resources</span>
+        <span class="t-desc">Books, videos, notes</span>
+      </a>
+      <a href="#quote" class="tool-btn">
+        <span class="t-icon">💫</span>
+        <span class="t-name">Daily Motivation</span>
+        <span class="t-desc">Quotes for students</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EXAM BOARDS -->
+<section class="section" id="exams">
+  <div class="section-inner">
+    <div class="section-label">Exam Information</div>
+    <h2 class="section-title">Bangladeshi Education System</h2>
+    <p class="section-sub">Key exams, boards, and what to expect at each level</p>
+    <div class="exam-grid">
+      <a href="https://www.educationboard.gov.bd" target="_blank" class="exam-card" style="--card-accent: #006A4E; --card-bg: #e6f4ef;">
+        <div class="icon">📝</div>
+        <h3>SSC — Secondary School Certificate</h3>
+        <p>Class 10 board exam. Conducted by 9 education boards. Results typically in May.</p>
+        <span class="tag">Class 10</span>
+      </a>
+      <a href="https://www.educationboard.gov.bd" target="_blank" class="exam-card" style="--card-accent: #D32F2F; --card-bg: #fdecea;">
+        <div class="icon">🎓</div>
+        <h3>HSC — Higher Secondary Certificate</h3>
+        <p>Class 12 board exam. Key for university admissions. Results announced after October.</p>
+        <span class="tag">Class 12</span>
+      </a>
+      <a href="https://www.du.ac.bd" target="_blank" class="exam-card" style="--card-accent: #E8A000; --card-bg: #fff8e1;">
+        <div class="icon">🏛️</div>
+        <h3>University Admission Tests</h3>
+        <p>DU, BUET, CU, RU, JU — individual admission tests for public universities.</p>
+        <span class="tag">After HSC</span>
+      </a>
+      <a href="https://www.dpe.gov.bd" target="_blank" class="exam-card" style="--card-accent: #7B1FA2; --card-bg: #f3e5f5;">
+        <div class="icon">🏫</div>
+        <h3>PSC / JSC / JDC</h3>
+        <p>Primary and junior school certificates. Now reformed into continuous assessment.</p>
+        <span class="tag">Class 5 & 8</span>
+      </a>
+      <a href="https://www.bpsc.gov.bd" target="_blank" class="exam-card" style="--card-accent: #0288D1; --card-bg: #e1f5fe;">
+        <div class="icon">🏆</div>
+        <h3>BCS — Bangladesh Civil Service</h3>
+        <p>BPSC conducts BCS exam for government service. Highly competitive, multi-stage.</p>
+        <span class="tag">After Graduation</span>
+      </a>
+      <a href="https://www.boesl.gov.bd" target="_blank" class="exam-card" style="--card-accent: #00695C; --card-bg: #e0f2f1;">
+        <div class="icon">✈️</div>
+        <h3>IELTS / Study Abroad Tests</h3>
+        <p>IELTS, GRE, SAT, TOEFL — required for scholarships and foreign university applications.</p>
+        <span class="tag">Study Abroad</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GPA CALCULATOR -->
+<section class="section calc-section" id="gpa">
+  <div class="section-inner">
+    <div class="section-label">Academic Tools</div>
+    <h2 class="section-title">GPA / CGPA Calculator</h2>
+    <p class="section-sub">Based on Bangladesh Education Board grading — SSC, HSC & University</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+      <div>
+        <div class="calc-box">
+          <div style="display: grid; grid-template-columns: 1fr 120px 120px 40px; gap: 10px; margin-bottom: 8px;">
+            <div style="font-size: 0.78rem; font-weight: 600; color: var(--muted);">Subject</div>
+            <div style="font-size: 0.78rem; font-weight: 600; color: var(--muted);">Marks (100)</div>
+            <div style="font-size: 0.78rem; font-weight: 600; color: var(--muted);">Credit Hrs</div>
+            <div></div>
+          </div>
+          <div id="subject-list">
+            <div class="subject-row">
+              <input type="text" placeholder="Bangla 1st Paper" value="Bangla 1st Paper">
+              <input type="number" placeholder="85" value="85" min="0" max="100">
+              <input type="number" placeholder="4" value="4" min="1" max="6">
+              <button class="remove-btn" onclick="removeSubject(this)" title="Remove">×</button>
+            </div>
+            <div class="subject-row">
+              <input type="text" placeholder="Bangla 2nd Paper" value="Bangla 2nd Paper">
+              <input type="number" placeholder="72" value="72" min="0" max="100">
+              <input type="number" placeholder="2" value="2" min="1" max="6">
+              <button class="remove-btn" onclick="removeSubject(this)">×</button>
+            </div>
+            <div class="subject-row">
+              <input type="text" placeholder="English 1st Paper" value="English 1st Paper">
+              <input type="number" placeholder="78" value="78" min="0" max="100">
+              <input type="number" placeholder="4" value="4" min="1" max="6">
+              <button class="remove-btn" onclick="removeSubject(this)">×</button>
+            </div>
+            <div class="subject-row">
+              <input type="text" placeholder="Mathematics" value="Mathematics">
+              <input type="number" placeholder="90" value="90" min="0" max="100">
+              <input type="number" placeholder="4" value="4" min="1" max="6">
+              <button class="remove-btn" onclick="removeSubject(this)">×</button>
+            </div>
+          </div>
+          <button class="btn-add-subject" onclick="addSubject()">+ Add Subject</button>
+          <button class="btn-green" onclick="calculateGPA()" style="margin-left: 10px; border-radius: 25px; border: none; padding: 9px 20px; font-size: 0.85rem;">Calculate GPA</button>
+          <div class="calc-result" id="gpa-result">
+            <div>
+              <span class="gpa-label">Your GPA</span>
+              <span class="gpa-num" id="gpa-value">4.56</span>
+            </div>
+            <div style="text-align: right;">
+              <span class="gpa-grade" id="gpa-grade">A+</span><br>
+              <span class="gpa-label">Grade</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 16px; color: var(--ink);">Bangladesh Board Grading Scale</h3>
+        <table style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
+          <thead>
+            <tr style="background: var(--surface);">
+              <th style="padding: 9px 12px; text-align: left; font-weight: 600; border: 1px solid var(--border);">Marks</th>
+              <th style="padding: 9px 12px; text-align: center; font-weight: 600; border: 1px solid var(--border);">Grade</th>
+              <th style="padding: 9px 12px; text-align: center; font-weight: 600; border: 1px solid var(--border);">GPA</th>
+              <th style="padding: 9px 12px; text-align: center; font-weight: 600; border: 1px solid var(--border);">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 8px 12px; border: 1px solid var(--border);">80–100</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><strong style="color: var(--green);">A+</strong></td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;">5.00</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><span style="background: var(--green-dim); color: var(--green); font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">Excellent</span></td></tr>
+            <tr style="background: var(--surface);"><td style="padding: 8px 12px; border: 1px solid var(--border);">70–79</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><strong>A</strong></td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;">4.00</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><span style="background: #e8f5e9; color: #2e7d32; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">Very Good</span></td></tr>
+            <tr><td style="padding: 8px 12px; border: 1px solid var(--border);">60–69</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><strong>A−</strong></td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;">3.50</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><span style="background: var(--gold-dim); color: var(--gold); font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">Good</span></td></tr>
+            <tr style="background: var(--surface);"><td style="padding: 8px 12px; border: 1px solid var(--border);">50–59</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><strong>B</strong></td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;">3.00</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><span style="background: #fff3e0; color: #e65100; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">Average</span></td></tr>
+            <tr><td style="padding: 8px 12px; border: 1px solid var(--border);">40–49</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><strong>C</strong></td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;">2.00</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><span style="background: var(--red-dim); color: var(--red); font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">Below Avg</span></td></tr>
+            <tr style="background: var(--surface);"><td style="padding: 8px 12px; border: 1px solid var(--border);">33–39</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><strong>D</strong></td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;">1.00</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><span style="background: #fce4ec; color: #c62828; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">Pass</span></td></tr>
+            <tr><td style="padding: 8px 12px; border: 1px solid var(--border);">0–32</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><strong>F</strong></td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;">0.00</td><td style="padding: 8px 12px; border: 1px solid var(--border); text-align: center;"><span style="background: #eeeeee; color: #616161; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">Fail</span></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size: 0.78rem; color: var(--muted); margin-top: 10px;">📌 GPA is calculated as weighted average. Optional subject bonus: up to 2 extra points.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOLARSHIPS -->
+<section class="section schol-bg" id="scholarships">
+  <div class="section-inner">
+    <div class="section-label schol-label">Financial Aid</div>
+    <h2 class="section-title schol-title">Scholarships for Bangladeshi Students</h2>
+    <p class="section-sub schol-sub">Opportunities at home and abroad — fully funded & partial</p>
+    <div class="schol-grid">
+      <div class="schol-card">
+        <div class="s-country">🇧🇩 Bangladesh</div>
+        <h4>Prime Minister's Education Assistance Trust</h4>
+        <p>Government fund for meritorious and financially needy students from SSC level to university.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Fully Funded</span>
+          <span class="s-tag">SSC–University</span>
+          <span class="s-tag">Need-based</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇯🇵 Japan</div>
+        <h4>MEXT Japanese Government Scholarship</h4>
+        <p>Full scholarship for undergraduate, master's, and PhD in Japan. Covers tuition, living costs, and flights.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Fully Funded</span>
+          <span class="s-tag">All Levels</span>
+          <span class="s-tag">Deadline: May</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇬🇧 UK</div>
+        <h4>Commonwealth Scholarship</h4>
+        <p>For master's and PhD studies in the UK. Covers tuition, travel, and living expenses. Competitive selection.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Fully Funded</span>
+          <span class="s-tag">Masters & PhD</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇺🇸 USA</div>
+        <h4>Fulbright Foreign Student Program</h4>
+        <p>For master's and PhD study in the US. Requires strong academic record and English proficiency.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Fully Funded</span>
+          <span class="s-tag">Masters & PhD</span>
+          <span class="s-tag">Merit-based</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇧🇩 Bangladesh</div>
+        <h4>National Science & Technology Fellowship</h4>
+        <p>For science & engineering students at masters and PhD level. Monthly stipend + research funding.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Funded</span>
+          <span class="s-tag">STEM</span>
+          <span class="s-tag">Masters/PhD</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇩🇪 Germany</div>
+        <h4>DAAD Scholarship Program</h4>
+        <p>Germany's largest funding program for international students. Many programs are in English. No tuition at public universities.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Partially Funded</span>
+          <span class="s-tag">All Levels</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇧🇩 Bangladesh</div>
+        <h4>Upazila Level Stipend Program</h4>
+        <p>Government stipend for girl students and underprivileged students at secondary level. Contact local upazila office.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Stipend</span>
+          <span class="s-tag">SSC Level</span>
+          <span class="s-tag">Need-based</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇨🇳 China</div>
+        <h4>Chinese Government Scholarship (CSC)</h4>
+        <p>Fully-funded bachelor's, master's, and PhD in China. Many programs in English. Very competitive for Bangladeshi students.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Fully Funded</span>
+          <span class="s-tag">All Levels</span>
+          <span class="s-tag">Deadline: March</span>
+        </div>
+      </div>
+      <div class="schol-card">
+        <div class="s-country">🇹🇷 Turkey</div>
+        <h4>Türkiye Bursları (Turkey Scholarships)</h4>
+        <p>Full scholarship for bachelor's, masters, and PhD in Turkey. Includes stipend, accommodation, health insurance.</p>
+        <div class="s-tags">
+          <span class="s-tag green">Fully Funded</span>
+          <span class="s-tag">All Levels</span>
+          <span class="s-tag">February Deadline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDY RESOURCES -->
+<section class="section" id="resources">
+  <div class="section-inner">
+    <div class="section-label">Study Materials</div>
+    <h2 class="section-title">Free Learning Resources</h2>
+    <p class="section-sub">Trusted platforms and resources for Bangladeshi students</p>
+    <div class="resources-grid">
+      <a href="https://www.10minuteschool.com" target="_blank" class="resource-card" style="--thumb-color: #D32F2F;">
+        <div class="r-thumb"></div>
+        <div class="r-body">
+          <div class="r-cat">Live Video Classes</div>
+          <h4>10 Minute School</h4>
+          <p>Bangladesh's largest EdTech platform. SSC & HSC video lectures, live classes, quizzes, and model tests. Free + premium content.</p>
+        </div>
+        <div class="r-footer">
+          <span class="r-source">10minuteschool.com</span>
+          <span class="r-arrow">→</span>
+        </div>
+      </a>
+      <a href="https://shikho.com" target="_blank" class="resource-card" style="--thumb-color: #7B1FA2;">
+        <div class="r-thumb"></div>
+        <div class="r-body">
+          <div class="r-cat">Video Courses</div>
+          <h4>Shikho</h4>
+          <p>High quality animated video lessons for SSC & HSC. Bangladesh's curriculum, taught by top teachers. Strong on science subjects.</p>
+        </div>
+        <div class="r-footer">
+          <span class="r-source">shikho.com</span>
+          <span class="r-arrow">→</span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/@TEE_TTH" target="_blank" class="resource-card" style="--thumb-color: #FF5722;">
+        <div class="r-thumb"></div>
+        <div class="r-body">
+          <div class="r-cat">YouTube — All Subject</div>
+          <h4>Technique Easy Education (YouTube)</h4>
+          <p>Popular Bangla channel for all Academic class. Free, clear explanations in Bangla.</p>
+        </div>
+        <div class="r-footer">
+          <span class="r-source">YouTube</span>
+          <span class="r-arrow">→</span>
+        </div>
+      </a>
+      <a href="https://www.khanacademy.org" target="_blank" class="resource-card" style="--thumb-color: #006A4E;">
+        <div class="r-thumb"></div>
+        <div class="r-body">
+          <div class="r-cat">Math & Science</div>
+          <h4>Khan Academy (Bangla)</h4>
+          <p>World-class free education. Bangla content available for math, science, and computing. Perfect supplement for any level.</p>
+        </div>
+        <div class="r-footer">
+          <span class="r-source">khanacademy.org</span>
+          <span class="r-arrow">→</span>
+        </div>
+      </a>
+      <a href="https://nctb.gov.bd" target="_blank" class="resource-card" style="--thumb-color: #E8A000;">
+        <div class="r-thumb"></div>
+        <div class="r-body">
+          <div class="r-cat">Official Textbooks</div>
+          <h4>NCTB Digital Textbooks</h4>
+          <p>Download official class 1–12 textbooks for free in PDF format. Published by the National Curriculum & Textbook Board.</p>
+        </div>
+        <div class="r-footer">
+          <span class="r-source">nctb.gov.bd</span>
+          <span class="r-arrow">→</span>
+        </div>
+      </a>
+      <a href="https://www.edx.org" target="_blank" class="resource-card" style="--thumb-color: #0288D1;">
+        <div class="r-thumb"></div>
+        <div class="r-body">
+          <div class="r-cat">University Level</div>
+          <h4>edX</h4>
+          <p>Thousands of university courses from top institutions. Free audit option available.</p>
+        </div>
+        <div class="r-footer">
+          <span class="r-source">edx.org</span>
+          <span class="r-arrow">→</span>
+        </div>
+      </a>
+      <a href="https://coursera.org" target="_blank" class="resource-card" style="--thumb-color: #0288D1;">
+        <div class="r-thumb"></div>
+        <div class="r-body">
+          <div class="r-cat">University Level</div>
+          <h4>Coursera</h4>
+          <p>Audit thousands of university courses from MIT, Stanford, Yale for free. Great for skill-building beyond your curriculum.</p>
+        </div>
+        <div class="r-footer">
+          <span class="r-source">coursera.org</span>
+          <span class="r-arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTINE MAKER -->
+<section class="section routine-bg" id="routine">
+  <div class="section-inner">
+    <div class="section-label">Study Planning</div>
+    <h2 class="section-title">Weekly Routine Maker</h2>
+    <p class="section-sub">Build your study schedule and print it out</p>
+    <div class="routine-table-wrap">
+      <table class="routine-table" id="routine-table">
+        <thead>
+          <tr>
+            <th style="width: 80px;">Time</th>
+            <th>সোমবার<br><span style="font-weight:400;opacity:0.8">Monday</span></th>
+            <th>মঙ্গলবার<br><span style="font-weight:400;opacity:0.8">Tuesday</span></th>
+            <th>বুধবার<br><span style="font-weight:400;opacity:0.8">Wednesday</span></th>
+            <th>বৃহস্পতিবার<br><span style="font-weight:400;opacity:0.8">Thursday</span></th>
+            <th>শুক্রবার<br><span style="font-weight:400;opacity:0.8">Friday</span></th>
+            <th>শনিবার<br><span style="font-weight:400;opacity:0.8">Saturday</span></th>
+            <th>রবিবার<br><span style="font-weight:400;opacity:0.8">Sunday</span></th>
+          </tr>
+        </thead>
+        <tbody id="routine-body"></tbody>
+      </table>
+    </div>
+    <div class="routine-actions">
+      <button class="btn-green" onclick="clearRoutine()">🔄 Clear All</button>
+      <button class="btn-outline" onclick="window.print()">🖨️ Print Routine</button>
+      <button class="btn-outline" onclick="saveRoutine()">💾 Save (Local)</button>
+      <button class="btn-outline" onclick="loadRoutine()">📂 Load Saved</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS TRACKER -->
+<section class="section progress-bg" id="tracker">
+  <div class="section-inner">
+    <div class="section-label">Personal Progress</div>
+    <h2 class="section-title">Chapter Progress Tracker</h2>
+    <p class="section-sub">Track how much of each subject you've completed</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div>
+        <div class="progress-form">
+          <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 16px;">Add / Update Subject</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Subject Name</label>
+              <input type="text" id="subj-name" placeholder="e.g. Physics">
+            </div>
+            <div class="form-group">
+              <label>Total Chapters</label>
+              <input type="number" id="total-ch" placeholder="e.g. 12" min="1" max="50">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Chapters Completed</label>
+              <input type="number" id="done-ch" placeholder="e.g. 7" min="0">
+            </div>
+            <div class="form-group">
+              <label>Exam Date</label>
+              <input type="date" id="exam-date">
+            </div>
+          </div>
+          <button class="btn-green" onclick="addSubjectProgress()" style="margin-top: 4px;">Add Subject</button>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 16px; color: var(--ink);">Your Progress</h3>
+        <div id="progress-list">
+          <!-- Populated by JS -->
+        </div>
+        <div id="overall-progress" style="margin-top: 20px; display: none;">
+          <div class="calc-result" style="border-radius: var(--radius-sm);">
+            <div>
+              <span class="gpa-label">Overall Completion</span>
+              <span class="gpa-num" id="overall-pct">0%</span>
+            </div>
+            <div style="text-align: right;">
+              <span class="gpa-grade" id="overall-msg">Keep going!</span>
+              <span class="gpa-label" style="display: block;">Status</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNIVERSITY FINDER -->
+<section class="section" id="universities">
+  <div class="section-inner">
+    <div class="section-label">Higher Education</div>
+    <h2 class="section-title">University Finder</h2>
+    <p class="section-sub">Search Bangladesh's universities by name, type, or location</p>
+    <div class="uni-search-bar">
+      <input type="text" id="uni-search" placeholder="Search university name..." oninput="filterUnis()">
+      <select id="uni-type" onchange="filterUnis()">
+        <option value="all">All Types</option>
+        <option value="public">Public University</option>
+        <option value="private">Private University</option>
+        <option value="medical">Medical College</option>
+        <option value="engineering">Engineering</option>
+      </select>
+      <select id="uni-district" onchange="filterUnis()">
+        <option value="all">All Districts</option>
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chittagong">Chittagong</option>
+        <option value="Rajshahi">Rajshahi</option>
+        <option value="Khulna">Khulna</option>
+        <option value="Sylhet">Sylhet</option>
+        <option value="Mymensingh">Mymensingh</option>
+        <option value="Comilla">Comilla</option>
+      </select>
+      <button class="btn-search" onclick="filterUnis()">Search</button>
+    </div>
+    <div class="uni-grid" id="uni-grid"></div>
+    <p style="font-size: 0.8rem; color: var(--muted); margin-top: 12px;" id="uni-count"></p>
+  </div>
+</section>
+
+<!-- CAREER GUIDE -->
+<section class="section tools-bg" id="career">
+  <div class="section-inner">
+    <div class="section-label">Career Planning</div>
+    <h2 class="section-title">Career Guide for Bangladesh</h2>
+    <p class="section-sub">Explore career paths, expected salaries, and job market demand</p>
+    <div class="career-grid">
+      <div class="career-card">
+        <span class="c-icon">💻</span>
+        <h4>Software Engineer</h4>
+        <p>In-demand locally and internationally. Web, mobile, backend. Strong freelancing potential.</p>
+        <div>
+          <span class="c-salary">৳50,000 – ৳2,50,000/month</span>
+          <span class="c-demand demand-high">🔥 High Demand</span>
+        </div>
+      </div>
+      <div class="career-card">
+        <span class="c-icon">🏛️</span>
+        <h4>BCS (Government Service)</h4>
+        <p>Bangladesh Civil Service — administration, police, tax, customs. Most competitive but prestigious.</p>
+        <div>
+          <span class="c-salary">৳30,000 – ৳85,000/month</span>
+          <span class="c-demand demand-high">🔥 High Demand</span>
+        </div>
+      </div>
+      <div class="career-card">
+        <span class="c-icon">🏥</span>
+        <h4>Medical Doctor (MBBS)</h4>
+        <p>5-year MBBS from public or private college. Respected profession with stable income and social status.</p>
+        <div>
+          <span class="c-salary">৳60,000 – ৳3,00,000+/month</span>
+          <span class="c-demand demand-high">🔥 High Demand</span>
+        </div>
+      </div>
+      <div class="career-card">
+        <span class="c-icon">⚙️</span>
+        <h4>Civil / Mechanical Engineer</h4>
+        <p>BUET or private university graduate. Infrastructure boom in BD creates strong demand.</p>
+        <div>
+          <span class="c-salary">৳35,000 – ৳1,50,000/month</span>
+          <span class="c-demand demand-high">🔥 High Demand</span>
+        </div>
+      </div>
+      <div class="career-card">
+        <span class="c-icon">📊</span>
+        <h4>Banking & Finance</h4>
+        <p>Private and public bank jobs. MBA or accounting degree preferred. Stable with good benefits.</p>
+        <div>
+          <span class="c-salary">৳25,000 – ৳1,20,000/month</span>
+          <span class="c-demand demand-med">📈 Medium Demand</span>
+        </div>
+      </div>
+      <div class="career-card">
+        <span class="c-icon">🎨</span>
+        <h4>UI/UX & Graphic Design</h4>
+        <p>Strong demand in local startups and international freelancing. Build a portfolio early.</p>
+        <div>
+          <span class="c-salary">৳20,000 – ৳1,50,000/month</span>
+          <span class="c-demand demand-high">🔥 High Demand</span>
+        </div>
+      </div>
+      <div class="career-card">
+        <span class="c-icon">📡</span>
+        <h4>Telecommunication Engineer</h4>
+        <p>Growing sector with 5G rollout. Companies like Grameenphone, Robi, Banglalink hire regularly.</p>
+        <div>
+          <span class="c-salary">৳40,000 – ৳1,50,000/month</span>
+          <span class="c-demand demand-med">📈 Medium Demand</span>
+        </div>
+      </div>
+      <div class="career-card">
+        <span class="c-icon">📚</span>
+        <h4>University Teacher / Researcher</h4>
+        <p>PhD required for permanent posts. Prestigious, requires publication record. Lecturership possible after Masters.</p>
+        <div>
+          <span class="c-salary">৳40,000 – ৳1,20,000/month</span>
+          <span class="c-demand demand-med">📈 Growing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTIVATIONAL QUOTES -->
+<section class="section" id="quote">
+  <div class="section-inner">
+    <div class="section-label">Daily Motivation</div>
+    <h2 class="section-title">Words to keep you going</h2>
+    <p class="section-sub">Tap for a new quote anytime you need encouragement</p>
+    <div class="quote-board" id="quote-board" onclick="nextQuote()" style="cursor: pointer;">
+      <div class="quote-text" id="q-text">"The roots of education are bitter, but the fruit is sweet."</div>
+      <div class="quote-bangla" id="q-bangla">"শিক্ষার শিকড় তেতো, কিন্তু ফল মিষ্টি।"</div>
+      <div class="quote-author" id="q-author">— Aristotle</div>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 16px;">Click anywhere to get a new quote ↻</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <span class="footer-brand">🇧🇩 শিক্ষার আলো</span>
+        <p class="footer-tagline">A free, open resource portal dedicated to every student in Bangladesh — from Class 1 to PhD. Built with love for the land of rivers and resilience.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Exam Links</h5>
+        <a href="https://www.educationboard.gov.bd" target="_blank">Education Board</a>
+        <a href="https://www.du.ac.bd" target="_blank">Dhaka University</a>
+        <a href="https://www.buet.ac.bd" target="_blank">BUET</a>
+        <a href="https://www.bpsc.gov.bd" target="_blank">BPSC (BCS)</a>
+      </div>
+      <div class="footer-col">
+        <h5>Study Resources</h5>
+        <a href="https://www.10minuteschool.com" target="_blank">10 Minute School</a>
+        <a href="https://shikho.com" target="_blank">Shikho</a>
+        <a href="https://nctb.gov.bd" target="_blank">NCTB Books</a>
+        <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a>
+      </div>
+      <div class="footer-col">
+        <h5>Scholarships</h5>
+        <a href="https://pm.gov.bd" target="_blank">PM's Trust Fund</a>
+        <a href="https://www.jasso.or.jp" target="_blank">MEXT (Japan)</a>
+        <a href="https://cscscholarship.org" target="_blank">China CSC</a>
+        <a href="https://turkiyeburslari.gov.tr" target="_blank">Turkey Scholarships</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="made-in-bd">
+        <div class="flag-mini"></div>
+        <span>Made with ❤️ for Bangladeshi students — তোমার জন্য, বাংলাদেশ</span>
+      </div>
+      <span>Free forever · No ads · No tracking</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── GPA CALCULATOR ──────────────────────────────────────────────────
+function marksToGrade(m) {
+  if (m >= 80) return { grade: 'A+', gpa: 5.0 };
+  if (m >= 70) return { grade: 'A', gpa: 4.0 };
+  if (m >= 60) return { grade: 'A−', gpa: 3.5 };
+  if (m >= 50) return { grade: 'B', gpa: 3.0 };
+  if (m >= 40) return { grade: 'C', gpa: 2.0 };
+  if (m >= 33) return { grade: 'D', gpa: 1.0 };
+  return { grade: 'F', gpa: 0.0 };
+}
+
+function calculateGPA() {
+  const rows = document.querySelectorAll('#subject-list .subject-row');
+  let totalPoints = 0, totalCredits = 0;
+  rows.forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const marks = parseFloat(inputs[1].value) || 0;
+    const credits = parseFloat(inputs[2].value) || 0;
+    const { gpa } = marksToGrade(marks);
+    totalPoints += gpa * credits;
+    totalCredits += credits;
+  });
+  const gpa = totalCredits ? (totalPoints / totalCredits) : 0;
+  const rounded = Math.min(5.0, gpa).toFixed(2);
+  const grade = marksToGrade(Math.round(parseFloat(rounded) * 20));
+  document.getElementById('gpa-value').textContent = rounded;
+  document.getElementById('gpa-grade').textContent = grade.grade;
+}
+
+function addSubject() {
+  const div = document.createElement('div');
+  div.className = 'subject-row';
+  div.innerHTML = `
+    <input type="text" placeholder="Subject name">
+    <input type="number" placeholder="Marks" min="0" max="100">
+    <input type="number" placeholder="Credits" min="1" max="6">
+    <button class="remove-btn" onclick="removeSubject(this)">×</button>
+  `;
+  document.getElementById('subject-list').appendChild(div);
+}
+
+function removeSubject(btn) {
+  const rows = document.querySelectorAll('#subject-list .subject-row');
+  if (rows.length > 1) btn.closest('.subject-row').remove();
+  calculateGPA();
+}
+
+calculateGPA();
+document.getElementById('subject-list').addEventListener('input', calculateGPA);
+
+// ── ROUTINE MAKER ────────────────────────────────────────────────────
+const timeSlots = ['6:00 AM','7:00 AM','8:00 AM','9:00 AM','10:00 AM','11:00 AM',
+  '12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM',
+  '6:00 PM','7:00 PM','8:00 PM','9:00 PM','10:00 PM'];
+
+function buildRoutine() {
+  const tbody = document.getElementById('routine-body');
+  tbody.innerHTML = '';
+  timeSlots.forEach(t => {
+    const tr = document.createElement('tr');
+    let cells = `<td class="time-col">${t}</td>`;
+    for (let d = 0; d < 7; d++) {
+      cells += `<td><input type="text" placeholder="—" data-slot="${t}-${d}"></td>`;
+    }
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+  });
+}
+
+function clearRoutine() {
+  document.querySelectorAll('#routine-body input').forEach(i => i.value = '');
+}
+
+function saveRoutine() {
+  const data = {};
+  document.querySelectorAll('#routine-body input').forEach(i => { data[i.dataset.slot] = i.value; });
+  localStorage.setItem('shikhar_routine', JSON.stringify(data));
+  alert('Routine saved!');
+}
+
+function loadRoutine() {
+  const saved = localStorage.getItem('shikhar_routine');
+  if (!saved) { alert('No saved routine found.'); return; }
+  const data = JSON.parse(saved);
+  document.querySelectorAll('#routine-body input').forEach(i => { i.value = data[i.dataset.slot] || ''; });
+  alert('Routine loaded!');
+}
+
+buildRoutine();
+
+// ── PROGRESS TRACKER ─────────────────────────────────────────────────
+let subjects = [];
+
+function addSubjectProgress() {
+  const name = document.getElementById('subj-name').value.trim();
+  const total = parseInt(document.getElementById('total-ch').value);
+  const done = parseInt(document.getElementById('done-ch').value);
+  const date = document.getElementById('exam-date').value;
+  if (!name || !total || isNaN(done)) { alert('Please fill in all fields.'); return; }
+  const existing = subjects.findIndex(s => s.name === name);
+  if (existing >= 0) subjects[existing] = { name, total, done, date };
+  else subjects.push({ name, total, done, date });
+  renderProgress();
+  document.getElementById('subj-name').value = '';
+  document.getElementById('total-ch').value = '';
+  document.getElementById('done-ch').value = '';
+}
+
+function renderProgress() {
+  const list = document.getElementById('progress-list');
+  if (!subjects.length) { list.innerHTML = '<p style="color:var(--muted);font-size:0.88rem;">No subjects yet. Add one!</p>'; return; }
+  list.innerHTML = subjects.map((s, i) => {
+    const pct = Math.round((s.done / s.total) * 100);
+    const bar = pct === 100 ? 'var(--green)' : pct >= 60 ? 'var(--gold)' : 'var(--red)';
+    const daysLeft = s.date ? Math.ceil((new Date(s.date) - new Date()) / 86400000) : null;
+    return `<div class="subject-progress">
+      <div class="sp-header">
+        <span class="sp-name">${s.name} (${s.done}/${s.total} chapters)</span>
+        <span class="sp-pct" style="color:${bar}">${pct}%${daysLeft !== null ? ` · ${daysLeft}d left` : ''}</span>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%;background:${bar}"></div></div>
+    </div>`;
+  }).join('');
+  const totalDone = subjects.reduce((a, s) => a + s.done, 0);
+  const totalAll = subjects.reduce((a, s) => a + s.total, 0);
+  const overall = Math.round((totalDone / totalAll) * 100);
+  const el = document.getElementById('overall-progress');
+  el.style.display = 'block';
+  document.getElementById('overall-pct').textContent = overall + '%';
+  document.getElementById('overall-msg').textContent = overall >= 80 ? 'Almost there! 🎉' : overall >= 50 ? 'Great progress!' : 'Keep going! 💪';
+}
+
+renderProgress();
+
+// ── UNIVERSITY DATA ────────────────────────────────────────────────
+const universities = [
+  { name: 'University of Dhaka', type: 'public', district: 'Dhaka', founded: 1921, students: '33,000+' },
+  { name: 'Bangladesh University of Engineering & Technology (BUET)', type: 'engineering', district: 'Dhaka', founded: 1962, students: '10,000+' },
+  { name: 'Chittagong University', type: 'public', district: 'Chittagong', founded: 1966, students: '25,000+' },
+  { name: 'Rajshahi University', type: 'public', district: 'Rajshahi', founded: 1953, students: '30,000+' },
+  { name: 'Jahangirnagar University', type: 'public', district: 'Dhaka', founded: 1970, students: '15,000+' },
+  { name: 'Shahjalal University of Science & Technology', type: 'public', district: 'Sylhet', founded: 1991, students: '12,000+' },
+  { name: 'Khulna University', type: 'public', district: 'Khulna', founded: 1991, students: '8,000+' },
+  { name: 'Bangladsh Agricultural University', type: 'public', district: 'Mymensingh', founded: 1961, students: '7,000+' },
+  { name: 'Rajshahi University of Engineering (RUET)', type: 'engineering', district: 'Rajshahi', founded: 2003, students: '5,500+' },
+  { name: 'North South University', type: 'private', district: 'Dhaka', founded: 1992, students: '20,000+' },
+  { name: 'BRAC University', type: 'private', district: 'Dhaka', founded: 2001, students: '10,000+' },
+  { name: 'Independent University Bangladesh (IUB)', type: 'private', district: 'Dhaka', founded: 1993, students: '8,000+' },
+  { name: 'East West University', type: 'private', district: 'Dhaka', founded: 1996, students: '12,000+' },
+  { name: 'Ahsanullah University of Science & Technology', type: 'private', district: 'Dhaka', founded: 1995, students: '7,000+' },
+  { name: 'Dhaka Medical College', type: 'medical', district: 'Dhaka', founded: 1946, students: '5,000+' },
+  { name: 'Chittagong Medical College', type: 'medical', district: 'Chittagong', founded: 1957, students: '3,500+' },
+  { name: 'Sylhet MAG Osmani Medical College', type: 'medical', district: 'Sylhet', founded: 1962, students: '2,500+' },
+  { name: 'Comilla University', type: 'public', district: 'Comilla', founded: 2006, students: '6,000+' },
+  { name: 'Noakhali Science & Technology University', type: 'public', district: 'Chittagong', founded: 2006, students: '5,000+' },
+  { name: 'American International University Bangladesh (AIUB)', type: 'private', district: 'Dhaka', founded: 1994, students: '14,000+' },
+];
+
+const typeMap = { public: 'Public', private: 'Private', medical: 'Medical', engineering: 'Engineering' };
+const classMap = { public: 'u-public', private: 'u-private', medical: 'u-medical', engineering: 'u-eng' };
+
+function filterUnis() {
+  const q = document.getElementById('uni-search').value.toLowerCase();
+  const type = document.getElementById('uni-type').value;
+  const dist = document.getElementById('uni-district').value;
+  const results = universities.filter(u =>
+    (q === '' || u.name.toLowerCase().includes(q)) &&
+    (type === 'all' || u.type === type) &&
+    (dist === 'all' || u.district === dist)
+  );
+  const grid = document.getElementById('uni-grid');
+  grid.innerHTML = results.map(u => `
+    <div class="uni-card">
+      <span class="u-badge ${classMap[u.type]}">${typeMap[u.type]}</span>
+      <h4>${u.name}</h4>
+      <div class="u-loc">📍 ${u.district}</div>
+      <div class="u-info">
+        <span>Est. <strong>${u.founded}</strong></span>
+        <span><strong>${u.students}</strong> students</span>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('uni-count').textContent = `Showing ${results.length} of ${universities.length} institutions`;
+}
+
+filterUnis();
+
+// ── MOTIVATIONAL QUOTES ───────────────────────────────────────────────
+const quotes = [
+  { en: '"The roots of education are bitter, but the fruit is sweet."', bn: '"শিক্ষার শিকড় তেতো, কিন্তু ফল মিষ্টি।"', author: '— Aristotle' },
+  { en: '"Education is the most powerful weapon which you can use to change the world."', bn: '"শিক্ষাই সবচেয়ে শক্তিশালী অস্ত্র যা তুমি পৃথিবী বদলাতে ব্যবহার করতে পারো।"', author: '— Nelson Mandela' },
+  { en: '"An investment in knowledge pays the best interest."', bn: '"জ্ঞানে বিনিয়োগই সর্বোচ্চ মুনাফা দেয়।"', author: '— Benjamin Franklin' },
+  { en: '"The beautiful thing about learning is nobody can take it away from you."', bn: '"শিক্ষার সুন্দর দিক হলো এটা কেউ তোমার কাছ থেকে নিতে পারে না।"', author: '— B.B. King' },
+  { en: '"Success is the sum of small efforts repeated day in and day out."', bn: '"সাফল্য হলো প্রতিদিনের ছোট ছোট প্রচেষ্টার সমষ্টি।"', author: '— Robert Collier' },
+  { en: '"Don\'t watch the clock; do what it does — keep going."', bn: '"ঘড়ি দেখো না; ঘড়ি যা করে সেটা করো — এগিয়ে চলো।"', author: '— Sam Levenson' },
+  { en: '"A dream doesn\'t become reality through magic; it takes sweat, determination and hard work."', bn: '"স্বপ্ন জাদুতে বাস্তব হয় না; এর জন্য ঘাম, দৃঢ়তা ও পরিশ্রম দরকার।"', author: '— Colin Powell' },
+];
+let qIdx = 0;
+
+function nextQuote() {
+  qIdx = (qIdx + 1) % quotes.length;
+  const q = quotes[qIdx];
+  const board = document.getElementById('quote-board');
+  board.style.opacity = '0.3';
+  setTimeout(() => {
+    document.getElementById('q-text').textContent = q.en;
+    document.getElementById('q-bangla').textContent = q.bn;
+    document.getElementById('q-author').textContent = q.author;
+    board.style.opacity = '1';
+  }, 200);
+  board.style.transition = 'opacity 0.2s';
+}
+
+// ── SCROLL ANIMATIONS ─────────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.exam-card, .tool-btn, .schol-card, .resource-card, .career-card, .uni-card').forEach(el => {
+  el.classList.add('hidden');
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
